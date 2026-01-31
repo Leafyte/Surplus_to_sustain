@@ -135,7 +135,7 @@ git --version
 #### 1️⃣ Clone the Repository
 ```cmd
 # Open Command Prompt or PowerShell
-git clone https://github.com/yourusername/surplus-to-sustain.git
+git clone https://github.com/Leafyte/Surplus_to_sustain.git
 cd surplus-to-sustain
 ```
 
@@ -193,7 +193,7 @@ Open browser: `http://localhost:8000`
 #### 1️⃣ Clone the Repository
 ```bash
 # Open Terminal
-git clone https://github.com/yourusername/surplus-to-sustain.git
+git clone https://github.com/Leafyte/Surplus_to_sustain.git
 cd surplus-to-sustain
 ```
 
@@ -250,7 +250,7 @@ Open browser: `http://localhost:8000`
 
 #### 1️⃣ Clone the Repository
 ```bash
-git clone https://github.com/yourusername/surplus-to-sustain.git
+git clone https://github.com/Leafyte/Surplus_to_sustain.git
 cd surplus-to-sustain
 ```
 
@@ -297,7 +297,7 @@ Open: `http://localhost:8000`
 
 ```bash
 # 1. Clone and navigate
-git clone https://github.com/yourusername/surplus-to-sustain.git
+git clone https://github.com/Leafyte/Surplus_to_sustain.git
 cd surplus-to-sustain
 
 # 2. Create virtual environment
@@ -504,16 +504,16 @@ We welcome contributions! Here's how you can help:
 
 **Windows:**
 ```cmd
-git clone https://github.com/YOUR-USERNAME/surplus-to-sustain.git
+git clone https://github.com/Leafyte/Surplus_to_sustain.git
 cd surplus-to-sustain
-git remote add upstream https://github.com/original-owner/surplus-to-sustain.git
+git remote add upstream https://github.com/Leafyte/Surplus_to_sustain.git
 ```
 
 **macOS/Linux:**
 ```bash
-git clone https://github.com/YOUR-USERNAME/surplus-to-sustain.git
+git clone https://github.com/Leafyte/Surplus_to_sustain.git
 cd surplus-to-sustain
-git remote add upstream https://github.com/original-owner/surplus-to-sustain.git
+git remote add upstream https://github.com/Leafyte/Surplus_to_sustain.git
 ```
 
 #### 3️⃣ Create Branch
@@ -606,18 +606,7 @@ git push origin feature/amazing-feature
 - [ ] Email notifications not implemented
 - [ ] Export to CSV pending
 - [ ] Google Maps integration pending
-
-See [Issues](https://github.com/yourusername/surplus-to-sustain/issues) for full list.
-
----
-
-## 📊 Stats
-
-![GitHub stars](https://img.shields.io/github/stars/yourusername/surplus-to-sustain?style=social)
-![GitHub forks](https://img.shields.io/github/forks/yourusername/surplus-to-sustain?style=social)
-![GitHub issues](https://img.shields.io/github/issues/yourusername/surplus-to-sustain)
-![GitHub pull requests](https://img.shields.io/github/issues-pr/yourusername/surplus-to-sustain)
-
+      
 ---
 
 ## 📄 License
@@ -641,9 +630,9 @@ copies of the Software.
 ## 👥 Authors
 
 **Your Name**
-- GitHub: [@yourusername](https://github.com/yourusername)
-- LinkedIn: [Your Profile](https://linkedin.com/in/yourprofile)
-- Email: your.email@example.com
+- GitHub: [@Leafyte](https://github.com/Leafyte)
+- LinkedIn: [karthik M]https://www.linkedin.com/in/karthikm127/)
+- Email: karthikm12790@gmail.com
 
 ---
 
@@ -653,28 +642,6 @@ copies of the Software.
 - **Data Sources**: Government agricultural data, NASA POWER API
 - **Libraries**: Flask, scikit-learn, Bootstrap
 - **Community**: Open source contributors
-
----
-
-## 💬 Support
-
-### Get Help
-- 📖 [Documentation](docs/)
-- 💬 [Discussions](https://github.com/yourusername/surplus-to-sustain/discussions)
-- 🐛 [Report Bug](https://github.com/yourusername/surplus-to-sustain/issues)
-- ✨ [Request Feature](https://github.com/yourusername/surplus-to-sustain/issues)
-
-### Quick Links
-- [Installation Guide](docs/SETUP_GUIDE.md)
-- [ML Documentation](docs/ML_IMPLEMENTATION_GUIDE.md)
-- [API Docs](docs/API_DOCUMENTATION.md)
-- [FAQ](docs/FAQ.md)
-
----
-
-## ⭐ Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=yourusername/surplus-to-sustain&type=Date)](https://star-history.com/#yourusername/surplus-to-sustain&Date)
 
 ---
 
@@ -728,9 +695,6 @@ app.run(debug=True, port=5000)  # Change 8000 to 5000
 # Clear browser cache (Ctrl + Shift + R)
 # Check modern-style.css is loaded
 ```
-
-See [Troubleshooting Guide](docs/TROUBLESHOOTING.md) for more solutions.
-
 ---
 
 **Built with Python 🐍 • Flask 🌶️ • scikit-learn 🤖 • Bootstrap 🎨**
