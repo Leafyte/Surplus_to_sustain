@@ -85,7 +85,7 @@ An AI-powered platform that predicts crop yields 2-3 weeks before harvest, conne
 🔗 [**Try it live**](https://surplus-to-sustain-demo.herokuapp.com) *(coming soon)*
 
 ### Screenshots
-
+<img width="1436" height="827" alt="Screenshot 2026-01-31 at 8 38 16 PM" src="https://github.com/user-attachments/assets/b348d023-ac7e-42f5-8519-d1615e9a8ae0" />
 
 ## 🛠️ Tech Stack
 
