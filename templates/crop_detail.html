@@ -1,0 +1,190 @@
+{% extends "base.html" %}
+
+{% block title %}{{ crop.crop_name | title }} Details - Surplus to Sustain{% endblock %}
+
+{% block content %}
+<div class="mb-3">
+    <a href="{{ url_for('dashboard') }}" class="btn btn-outline-secondary"><i class="fas fa-arrow-left"></i> Back to Dashboard</a>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <!-- Crop Details Card -->
+        <div class="card mb-4">
+            <div class="card-header bg-success text-white">
+                <h4 class="mb-0"><i class="fas fa-seedling"></i> {{ crop.crop_name | title }} {% if crop.variety %}({{ crop.variety }}){% endif %}</h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><strong>Area:</strong> {{ crop.area }} hectares</p>
+                        <p><strong>Planting Date:</strong> {{ crop.planting_date }}</p>
+                        <p><strong>Expected Harvest:</strong> {{ crop.expected_harvest_date }}</p>
+                        <p><strong>Soil Type:</strong> {{ crop.soil_type | title }}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>Irrigation:</strong> {{ crop.irrigation_type | title }}</p>
+                        <p><strong>Season:</strong> {{ crop.season | title }}</p>
+                        <p><strong>Status:</strong> <span class="badge bg-primary">{{ crop.status | title }}</span></p>
+                        <p><strong>Expected Consumption:</strong> {{ crop.expected_consumption }} tons</p>
+                    </div>
+                </div>
+                {% if crop.notes %}
+                <hr>
+                <p><strong>Notes:</strong> {{ crop.notes }}</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Prediction Card -->
+        <div class="card mb-4 border-{{ surplus_class }}">
+            <div class="card-header bg-{{ surplus_class }} text-white">
+                <h5 class="mb-0"><i class="fas fa-chart-line"></i> Surplus Prediction</h5>
+            </div>
+            <div class="card-body">
+                <div class="row text-center">
+                    <div class="col-md-4">
+                        <h3 class="text-primary">{{ crop.predicted_yield | round(2) }} tons</h3>
+                        <p class="text-muted">Predicted Yield</p>
+                    </div>
+                    <div class="col-md-4">
+                        <h3 class="text-{{ surplus_class }}">{{ crop.predicted_surplus | round(2) }} tons</h3>
+                        <p class="text-muted">Predicted Surplus</p>
+                    </div>
+                    <div class="col-md-4">
+                        <h3 class="text-{{ surplus_class }}">{{ surplus_level }}</h3>
+                        <p class="text-muted">Surplus Level</p>
+                    </div>
+                </div>
+
+                <hr>
+
+                <h6>Recommendations:</h6>
+                <ul class="list-unstyled">
+                    {% for rec in recommendations %}
+                    <li class="mb-2">
+                        <span class="fs-4">{{ rec.icon }}</span> 
+                        <strong>{{ rec.title }}:</strong> {{ rec.desc }}
+                        <span class="badge bg-{{ 'danger' if rec.priority == 'high' else 'warning' if rec.priority == 'medium' else 'info' }}">{{ rec.priority | upper }}</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <!-- Matched Buyers -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0"><i class="fas fa-store"></i> Matched Buyers ({{ buyers|length }})</h5>
+            </div>
+            <div class="card-body">
+                {% if buyers %}
+                <div class="row">
+                    {% for buyer in buyers %}
+                    <div class="col-md-6 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h6 class="card-title">{{ buyer.name }}</h6>
+                                <p class="card-text">
+                                    <span class="badge bg-{{ 'primary' if buyer.buyer_type == 'Processor' else 'info' if buyer.buyer_type == 'Storage' else 'success' if buyer.buyer_type == 'Retailer' else 'warning' if buyer.buyer_type == 'NGO' else 'secondary' }}">
+                                        {{ buyer.buyer_type }}
+                                    </span><br>
+                                    <small class="text-muted">
+                                        <i class="fas fa-map-marker-alt"></i> {{ buyer.city }}<br>
+                                        <i class="fas fa-rupee-sign"></i> ₹{{ buyer.price_per_kg }}/kg<br>
+                                        <i class="fas fa-box"></i> Capacity: {{ buyer.capacity_tons }} tons<br>
+                                        <i class="fas fa-star"></i> Rating: {{ buyer.rating }}/5
+                                    </small>
+                                </p>
+                                <a href="tel:{{ buyer.phone }}" class="btn btn-sm btn-success"><i class="fas fa-phone"></i> Contact</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <p class="text-muted text-center">No buyers found for this crop yet.</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Transactions -->
+        {% if transactions %}
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0"><i class="fas fa-handshake"></i> Transactions</h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Buyer</th>
+                                <th>Quantity</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for txn in transactions %}
+                            <tr>
+                                <td>{{ txn.transaction_date }}</td>
+                                <td>{{ txn.buyer_name }}</td>
+                                <td>{{ txn.quantity_tons }} tons</td>
+                                <td>₹{{ txn.total_amount | int }}</td>
+                                <td><span class="badge bg-{{ 'success' if txn.status == 'completed' else 'warning' }}">{{ txn.status }}</span></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="col-md-4">
+        <!-- Quick Actions -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h6 class="mb-0">Quick Actions</h6>
+            </div>
+            <div class="card-body">
+                <div class="d-grid gap-2">
+                    <a href="{{ url_for('update_crop_status', crop_id=crop.id, status='growing') }}" class="btn btn-sm btn-primary">Mark as Growing</a>
+                    <a href="{{ url_for('update_crop_status', crop_id=crop.id, status='harvested') }}" class="btn btn-sm btn-success">Mark as Harvested</a>
+                    <a href="{{ url_for('buyers_list') }}" class="btn btn-sm btn-info">Find More Buyers</a>
+                    <a href="{{ url_for('delete_crop', crop_id=crop.id) }}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete Crop</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Weather Info -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h6 class="mb-0"><i class="fas fa-cloud-sun"></i> Weather Forecast</h6>
+            </div>
+            <div class="card-body">
+                <p><strong>Temperature:</strong> {{ weather.temperature }}°C</p>
+                <p><strong>Expected Rainfall:</strong> {{ weather.rainfall }}mm</p>
+                <p><strong>Humidity:</strong> {{ weather.humidity }}%</p>
+                <p class="mb-0"><strong>Forecast:</strong> {{ weather.forecast }}</p>
+            </div>
+        </div>
+
+        <!-- Impact Preview -->
+        <div class="card">
+            <div class="card-header bg-success text-white">
+                <h6 class="mb-0"><i class="fas fa-leaf"></i> Potential Impact</h6>
+            </div>
+            <div class="card-body">
+                <p><strong>Food Saved:</strong> {{ (crop.predicted_surplus * 0.75) | round(2) }} tons</p>
+                <p><strong>CO₂ Prevented:</strong> {{ (crop.predicted_surplus * 1.875) | round(2) }} tons</p>
+                <p class="mb-0"><strong>Extra Income:</strong> ₹{{ (crop.predicted_surplus * 7000) | round(0) | int }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

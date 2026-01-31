@@ -1,0 +1,164 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Surplus to Sustain{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="bg-success text-white rounded-3 p-5 mb-4">
+    <div class="row align-items-center">
+        <div class="col-lg-7">
+            <h1 class="display-4 fw-bold mb-3">🌾 Transform Agricultural Surplus into Sustainability</h1>
+            <p class="lead mb-4">Predict surplus before harvest. Connect with buyers. Save food. Earn more. Heal the planet.</p>
+            {% if not session.user_id %}
+            <div>
+                <a href="{{ url_for('register') }}" class="btn btn-light btn-lg me-2">Get Started</a>
+                <a href="{{ url_for('login') }}" class="btn btn-outline-light btn-lg">Login</a>
+            </div>
+            {% else %}
+            <div>
+                <a href="{{ url_for('add_crop') }}" class="btn btn-light btn-lg me-2">Add Crop</a>
+                <a href="{{ url_for('dashboard') }}" class="btn btn-outline-light btn-lg">Go to Dashboard</a>
+            </div>
+            {% endif %}
+        </div>
+        <div class="col-lg-5 text-center">
+            <i class="fas fa-leaf" style="font-size: 200px; opacity: 0.3;"></i>
+        </div>
+    </div>
+</div>
+
+<!-- Platform Stats -->
+<div class="row mb-5">
+    <div class="col-md-3">
+        <div class="card border-success">
+            <div class="card-body text-center">
+                <i class="fas fa-users fa-3x text-success mb-3"></i>
+                <h3 class="card-title">{{ total_farmers }}</h3>
+                <p class="card-text text-muted">Farmers Registered</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card border-success">
+            <div class="card-body text-center">
+                <i class="fas fa-seedling fa-3x text-success mb-3"></i>
+                <h3 class="card-title">{{ total_crops }}</h3>
+                <p class="card-text text-muted">Crops Tracked</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card border-success">
+            <div class="card-body text-center">
+                <i class="fas fa-box fa-3x text-success mb-3"></i>
+                <h3 class="card-title">{{ total_surplus }} tons</h3>
+                <p class="card-text text-muted">Surplus Predicted</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card border-success">
+            <div class="card-body text-center">
+                <i class="fas fa-handshake fa-3x text-success mb-3"></i>
+                <h3 class="card-title">{{ total_transactions }}</h3>
+                <p class="card-text text-muted">Transactions</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- How It Works -->
+<div class="mb-5">
+    <h2 class="text-center mb-4">How It Works</h2>
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <div class="bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                        <span class="fs-4">1</span>
+                    </div>
+                    <h5 class="card-title">📊 Predict Surplus</h5>
+                    <p class="card-text">AI predicts your harvest and surplus 2-3 weeks before harvest using weather data and satellite imagery.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <div class="bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                        <span class="fs-4">2</span>
+                    </div>
+                    <h5 class="card-title">🤝 Connect with Buyers</h5>
+                    <p class="card-text">Get matched with nearby processors, markets, NGOs, and storage hubs. Pre-book your surplus for fair prices.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <div class="bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                        <span class="fs-4">3</span>
+                    </div>
+                    <h5 class="card-title">♻️ Close the Loop</h5>
+                    <p class="card-text">Unavoidable waste becomes compost. Earn carbon credits. Improve soil for next season. Zero waste to landfill.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Benefits Section -->
+<div class="bg-light rounded-3 p-5 mb-5">
+    <h2 class="text-center mb-4">Why Farmers Choose Us</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <ul class="list-unstyled">
+                <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i> <strong>20-30% More Income:</strong> Sell at fair prices, not panic prices</li>
+                <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i> <strong>Zero Waste:</strong> Every kilogram finds a purpose</li>
+                <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i> <strong>Early Warning:</strong> Know surplus 2-3 weeks ahead</li>
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <ul class="list-unstyled">
+                <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i> <strong>Pre-Arranged Buyers:</strong> No last-minute scrambling</li>
+                <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i> <strong>Soil Improvement:</strong> Compost returns to your farm</li>
+                <li class="mb-3"><i class="fas fa-check-circle text-success me-2"></i> <strong>Carbon Credits:</strong> Extra revenue for environmental impact</li>
+            </ul>
+        </div>
+    </div>
+    <div class="text-center mt-4">
+        {% if not session.user_id %}
+        <a href="{{ url_for('register') }}" class="btn btn-success btn-lg">Join Now - It's Free!</a>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Impact Numbers -->
+<div class="text-center mb-5">
+    <h2 class="mb-4">Our Impact</h2>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="display-4 text-success fw-bold">{{ (total_surplus * 0.75) | round(1) }}</div>
+            <p class="text-muted">Tons of Food Saved</p>
+        </div>
+        <div class="col-md-4">
+            <div class="display-4 text-success fw-bold">{{ (total_surplus * 1.875) | round(1) }}</div>
+            <p class="text-muted">Tons CO₂ Prevented</p>
+        </div>
+        <div class="col-md-4">
+            <div class="display-4 text-success fw-bold">₹{{ (total_surplus * 5250) | round(0) | int }}</div>
+            <p class="text-muted">Extra Income Generated</p>
+        </div>
+    </div>
+</div>
+
+<!-- Call to Action -->
+{% if not session.user_id %}
+<div class="bg-success text-white rounded-3 p-5 text-center">
+    <h2 class="mb-3">Ready to Transform Your Surplus?</h2>
+    <p class="lead mb-4">Join thousands of farmers who are earning more while saving the planet.</p>
+    <a href="{{ url_for('register') }}" class="btn btn-light btn-lg">Get Started Today</a>
+</div>
+{% endif %}
+
+{% endblock %}

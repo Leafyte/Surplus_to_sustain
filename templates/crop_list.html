@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block title %}My Crops - Surplus to Sustain{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2><i class="fas fa-seedling text-success"></i> My Crops</h2>
+    <a href="{{ url_for('add_crop') }}" class="btn btn-success"><i class="fas fa-plus"></i> Add New Crop</a>
+</div>
+
+<!-- Filters -->
+<div class="card mb-4">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <label class="form-label">Filter by Status:</label>
+                <select class="form-control" onchange="window.location.href='?status=' + this.value + '&sort={{ sort_by }}'">
+                    <option value="all" {% if filter_status == 'all' %}selected{% endif %}>All</option>
+                    <option value="planned" {% if filter_status == 'planned' %}selected{% endif %}>Planned</option>
+                    <option value="growing" {% if filter_status == 'growing' %}selected{% endif %}>Growing</option>
+                    <option value="harvested" {% if filter_status == 'harvested' %}selected{% endif %}>Harvested</option>
+                    <option value="sold" {% if filter_status == 'sold' %}selected{% endif %}>Sold</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Sort by:</label>
+                <select class="form-control" onchange="window.location.href='?status={{ filter_status }}&sort=' + this.value">
+                    <option value="recent" {% if sort_by == 'recent' %}selected{% endif %}>Most Recent</option>
+                    <option value="surplus_high" {% if sort_by == 'surplus_high' %}selected{% endif %}>Highest Surplus</option>
+                    <option value="harvest_date" {% if sort_by == 'harvest_date' %}selected{% endif %}>Harvest Date</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Crops Grid -->
+{% if crops %}
+<div class="row">
+    {% for crop in crops %}
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 {% if crop.predicted_surplus > 3 %}border-danger{% elif crop.predicted_surplus > 1 %}border-warning{% else %}border-success{% endif %}">
+            <div class="card-header">
+                <h5 class="mb-0">{{ crop.crop_name | title }}</h5>
+                {% if crop.variety %}
+                <small class="text-muted">{{ crop.variety }}</small>
+                {% endif %}
+            </div>
+            <div class="card-body">
+                <p class="card-text">
+                    <strong>Area:</strong> {{ crop.area }} hectares<br>
+                    <strong>Planting Date:</strong> {{ crop.planting_date }}<br>
+                    <strong>Expected Harvest:</strong> {{ crop.expected_harvest_date }}<br>
+                    <strong>Status:</strong> <span class="badge bg-primary">{{ crop.status | title }}</span><br>
+                    <strong>Predicted Yield:</strong> {{ crop.predicted_yield | round(2) }} tons<br>
+                    <strong>Predicted Surplus:</strong> 
+                    <span class="{% if crop.predicted_surplus > 3 %}text-danger{% elif crop.predicted_surplus > 1 %}text-warning{% else %}text-success{% endif %} fw-bold">
+                        {{ crop.predicted_surplus | round(2) }} tons
+                    </span>
+                </p>
+                {% if crop.predicted_surplus > 3 %}
+                <div class="alert alert-danger alert-sm mb-2">
+                    <i class="fas fa-exclamation-triangle"></i> HIGH SURPLUS - Take action!
+                </div>
+                {% endif %}
+            </div>
+            <div class="card-footer">
+                <a href="{{ url_for('crop_detail', crop_id=crop.id) }}" class="btn btn-sm btn-success">View Details</a>
+                <a href="{{ url_for('delete_crop', crop_id=crop.id) }}" class="btn btn-sm btn-danger float-end" onclick="return confirm('Are you sure?')">Delete</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="text-center py-5">
+    <i class="fas fa-seedling fa-5x text-muted mb-3"></i>
+    <p class="text-muted">No crops found. Add your first crop to get started!</p>
+    <a href="{{ url_for('add_crop') }}" class="btn btn-success">Add Crop</a>
+</div>
+{% endif %}
+
+{% endblock %}

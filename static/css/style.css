@@ -1,0 +1,667 @@
+:root {
+    /* Primary Colors */
+    --primary-color: #28a745;
+    --primary-dark: #218838;
+    --primary-light: #34ce57;
+    
+    /* Background Colors */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --bg-tertiary: #e9ecef;
+    
+    /* Text Colors */
+    --text-primary: #212529;
+    --text-secondary: #6c757d;
+    --text-muted: #adb5bd;
+    
+    /* Card & Surface Colors */
+    --card-bg: #ffffff;
+    --card-border: #dee2e6;
+    --card-shadow: rgba(0, 0, 0, 0.1);
+    
+    /* Status Colors */
+    --success: #28a745;
+    --warning: #ffc107;
+    --danger: #dc3545;
+    --info: #17a2b8;
+    
+    /* Border & Divider */
+    --border-color: #dee2e6;
+    --divider-color: #e9ecef;
+    
+    /* Navigation */
+    --nav-bg: #28a745;
+    --nav-text: #ffffff;
+    --nav-hover: rgba(255, 255, 255, 0.1);
+    
+    /* Input & Forms */
+    --input-bg: #ffffff;
+    --input-border: #ced4da;
+    --input-focus: #80bdff;
+    
+    /* Shadows */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.15);
+    
+    /* Transitions */
+    --transition-fast: 0.15s ease;
+    --transition-medium: 0.3s ease;
+    --transition-slow: 0.5s ease;
+}
+
+/* ============================================================================
+   DARK MODE VARIABLES
+   ============================================================================ */
+body.dark-mode {
+    /* Primary Colors (slightly adjusted for dark mode) */
+    --primary-color: #34ce57;
+    --primary-dark: #28a745;
+    --primary-light: #4ade80;
+    
+    /* Background Colors */
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #2d2d2d;
+    --bg-tertiary: #3a3a3a;
+    
+    /* Text Colors */
+    --text-primary: #e5e5e5;
+    --text-secondary: #a0a0a0;
+    --text-muted: #737373;
+    
+    /* Card & Surface Colors */
+    --card-bg: #2d2d2d;
+    --card-border: #404040;
+    --card-shadow: rgba(0, 0, 0, 0.3);
+    
+    /* Status Colors (adjusted for dark backgrounds) */
+    --success: #34ce57;
+    --warning: #fbbf24;
+    --danger: #ef4444;
+    --info: #3b82f6;
+    
+    /* Border & Divider */
+    --border-color: #404040;
+    --divider-color: #333333;
+    
+    /* Navigation */
+    --nav-bg: #1f6f3f;
+    --nav-text: #ffffff;
+    --nav-hover: rgba(255, 255, 255, 0.15);
+    
+    /* Input & Forms */
+    --input-bg: #3a3a3a;
+    --input-border: #4a4a4a;
+    --input-focus: #34ce57;
+    
+    /* Shadows */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* ============================================================================
+   BASE STYLES
+   ============================================================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    transition: background-color var(--transition-medium), color var(--transition-medium);
+}
+
+/* ============================================================================
+   NAVIGATION
+   ============================================================================ */
+.navbar {
+    background-color: var(--nav-bg) !important;
+    box-shadow: var(--shadow-md);
+    transition: background-color var(--transition-medium);
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: var(--nav-text) !important;
+    transition: transform var(--transition-fast);
+}
+
+.navbar-brand:hover {
+    transform: scale(1.05);
+}
+
+.navbar-brand i {
+    margin-right: 8px;
+}
+
+.nav-link {
+    color: var(--nav-text) !important;
+    font-weight: 500;
+    padding: 0.5rem 1rem !important;
+    border-radius: 6px;
+    transition: background-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.nav-link:hover {
+    background-color: var(--nav-hover);
+    transform: translateY(-2px);
+}
+
+.nav-link i {
+    margin-right: 5px;
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-lg);
+    border-radius: 8px;
+    margin-top: 0.5rem;
+}
+
+.dropdown-item {
+    color: var(--text-primary);
+    transition: background-color var(--transition-fast);
+}
+
+.dropdown-item:hover {
+    background-color: var(--bg-tertiary);
+    color: var(--primary-color);
+}
+
+/* ============================================================================
+   CARDS
+   ============================================================================ */
+.card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-medium);
+    overflow: hidden;
+}
+
+.card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-4px);
+}
+
+.card-header {
+    background-color: var(--bg-tertiary);
+    border-bottom: 1px solid var(--border-color);
+    font-weight: 600;
+    padding: 1rem 1.25rem;
+}
+
+.card-body {
+    color: var(--text-primary);
+}
+
+.card-footer {
+    background-color: var(--bg-tertiary);
+    border-top: 1px solid var(--border-color);
+}
+
+/* Colored Card Headers */
+.card-header.bg-success,
+.card-header.bg-primary,
+.card-header.bg-warning,
+.card-header.bg-danger,
+.card-header.bg-info {
+    color: white !important;
+    border-bottom: none;
+}
+
+/* Card Borders for Status */
+.card.border-success {
+    border-left: 4px solid var(--success);
+}
+
+.card.border-warning {
+    border-left: 4px solid var(--warning);
+}
+
+.card.border-danger {
+    border-left: 4px solid var(--danger);
+}
+
+/* ============================================================================
+   BUTTONS
+   ============================================================================ */
+.btn {
+    border-radius: 8px;
+    font-weight: 500;
+    padding: 0.5rem 1.25rem;
+    transition: all var(--transition-fast);
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn-success {
+    background-color: var(--success);
+    color: white;
+}
+
+.btn-success:hover {
+    background-color: var(--primary-dark);
+}
+
+.btn-primary {
+    background-color: #007bff;
+}
+
+.btn-warning {
+    background-color: var(--warning);
+    color: #212529;
+}
+
+.btn-danger {
+    background-color: var(--danger);
+}
+
+.btn-outline-success {
+    border: 2px solid var(--success);
+    color: var(--success);
+    background-color: transparent;
+}
+
+.btn-outline-success:hover {
+    background-color: var(--success);
+    color: white;
+}
+
+/* Button Sizes */
+.btn-lg {
+    padding: 0.75rem 1.5rem;
+    font-size: 1.1rem;
+}
+
+.btn-sm {
+    padding: 0.25rem 0.75rem;
+    font-size: 0.875rem;
+}
+
+/* ============================================================================
+   FORMS & INPUTS
+   ============================================================================ */
+.form-control,
+.form-select {
+    background-color: var(--input-bg);
+    border: 1px solid var(--input-border);
+    color: var(--text-primary);
+    border-radius: 8px;
+    padding: 0.625rem 0.875rem;
+    transition: all var(--transition-fast);
+}
+
+.form-control:focus,
+.form-select:focus {
+    background-color: var(--input-bg);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+    color: var(--text-primary);
+}
+
+.form-label {
+    color: var(--text-primary);
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.form-text {
+    color: var(--text-secondary);
+}
+
+/* ============================================================================
+   ALERTS
+   ============================================================================ */
+.alert {
+    border-radius: 10px;
+    border: none;
+    padding: 1rem 1.25rem;
+    box-shadow: var(--shadow-sm);
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.alert-success {
+    background-color: rgba(40, 167, 69, 0.15);
+    color: var(--success);
+    border-left: 4px solid var(--success);
+}
+
+.alert-warning {
+    background-color: rgba(255, 193, 7, 0.15);
+    color: #856404;
+    border-left: 4px solid var(--warning);
+}
+
+body.dark-mode .alert-warning {
+    color: var(--warning);
+}
+
+.alert-danger {
+    background-color: rgba(220, 53, 69, 0.15);
+    color: var(--danger);
+    border-left: 4px solid var(--danger);
+}
+
+.alert-info {
+    background-color: rgba(23, 162, 184, 0.15);
+    color: var(--info);
+    border-left: 4px solid var(--info);
+}
+
+/* ============================================================================
+   BADGES
+   ============================================================================ */
+.badge {
+    padding: 0.4em 0.75em;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 0.875em;
+}
+
+/* ============================================================================
+   TABLES
+   ============================================================================ */
+.table {
+    color: var(--text-primary);
+    background-color: var(--card-bg);
+}
+
+.table thead th {
+    background-color: var(--bg-tertiary);
+    border-bottom: 2px solid var(--border-color);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    letter-spacing: 0.5px;
+}
+
+.table tbody tr {
+    transition: background-color var(--transition-fast);
+}
+
+.table-hover tbody tr:hover {
+    background-color: var(--bg-tertiary);
+}
+
+.table td,
+.table th {
+    border-color: var(--border-color);
+    padding: 1rem;
+}
+
+/* ============================================================================
+   PROGRESS BARS
+   ============================================================================ */
+.progress {
+    background-color: var(--bg-tertiary);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    transition: width var(--transition-slow);
+    font-weight: 600;
+}
+
+/* ============================================================================
+   FOOTER
+   ============================================================================ */
+footer {
+    background-color: var(--bg-primary);
+    border-top: 1px solid var(--border-color);
+    transition: background-color var(--transition-medium);
+}
+
+footer a {
+    color: var(--text-primary);
+    transition: color var(--transition-fast);
+}
+
+footer a:hover {
+    color: var(--primary-color);
+}
+
+/* ============================================================================
+   UTILITIES
+   ============================================================================ */
+.text-muted {
+    color: var(--text-muted) !important;
+}
+
+.bg-light {
+    background-color: var(--bg-tertiary) !important;
+}
+
+body.dark-mode .bg-light {
+    background-color: var(--bg-secondary) !important;
+}
+
+/* Dividers */
+hr {
+    border-color: var(--divider-color);
+    opacity: 1;
+}
+
+/* ============================================================================
+   LOADING STATES
+   ============================================================================ */
+.loading {
+    pointer-events: none;
+    opacity: 0.6;
+    position: relative;
+}
+
+.loading::after {
+    content: " ⏳";
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* ============================================================================
+   DARK MODE TOGGLE BUTTON
+   ============================================================================ */
+#darkModeToggle {
+    position: relative;
+    width: 60px;
+    height: 30px;
+    background-color: var(--bg-tertiary);
+    border: 2px solid var(--border-color);
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all var(--transition-medium);
+}
+
+#darkModeToggle::before {
+    content: '🌙';
+    position: absolute;
+    top: 2px;
+    left: 4px;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    transition: all var(--transition-medium);
+}
+
+body.dark-mode #darkModeToggle::before {
+    content: '☀️';
+    left: 30px;
+}
+
+body.dark-mode #darkModeToggle {
+    background-color: var(--primary-color);
+}
+
+/* ============================================================================
+   FLOATING ACTION BUTTON
+   ============================================================================ */
+.fab {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: var(--success);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-lg);
+    cursor: pointer;
+    transition: all var(--transition-medium);
+    z-index: 1000;
+}
+
+.fab:hover {
+    transform: scale(1.1) rotate(90deg);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================================================
+   RESPONSIVE DESIGN
+   ============================================================================ */
+@media (max-width: 768px) {
+    .navbar-brand {
+        font-size: 1.1rem;
+    }
+    
+    .card {
+        margin-bottom: 1rem;
+    }
+    
+    h1 {
+        font-size: 1.75rem;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+    
+    .btn {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+    
+    .table {
+        font-size: 0.875rem;
+    }
+    
+    .fab {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+    }
+}
+
+/* ============================================================================
+   ANIMATIONS
+   ============================================================================ */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease;
+}
+
+/* Smooth scroll */
+html {
+    scroll-behavior: smooth;
+}
+
+/* ============================================================================
+   CUSTOM SCROLLBAR (Dark Mode Aware)
+   ============================================================================ */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--text-muted);
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-color);
+}
+
+/* ============================================================================
+   TOOLTIPS & POPOVERS
+   ============================================================================ */
+.tooltip-inner {
+    background-color: var(--card-bg);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-md);
+}
+
+/* ============================================================================
+   SPECIAL EFFECTS
+   ============================================================================ */
+.glow {
+    box-shadow: 0 0 10px var(--primary-color);
+}
+
+.shimmer {
+    background: linear-gradient(90deg, 
+        var(--bg-tertiary) 0%, 
+        var(--bg-secondary) 50%, 
+        var(--bg-tertiary) 100%);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}

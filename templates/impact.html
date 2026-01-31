@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block title %}Impact Dashboard - Surplus to Sustain{% endblock %}
+
+{% block content %}
+<h2 class="mb-4"><i class="fas fa-chart-line text-success"></i> Your Impact Dashboard</h2>
+
+<!-- Impact Stats -->
+<div class="row mb-5">
+    <div class="col-md-3">
+        <div class="card bg-success text-white text-center">
+            <div class="card-body">
+                <i class="fas fa-apple-alt fa-3x mb-3"></i>
+                <h3>{{ food_saved }} tons</h3>
+                <p class="mb-0">Food Saved from Waste</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-primary text-white text-center">
+            <div class="card-body">
+                <i class="fas fa-cloud fa-3x mb-3"></i>
+                <h3>{{ co2_prevented }} tons</h3>
+                <p class="mb-0">CO₂ Emissions Prevented</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-warning text-white text-center">
+            <div class="card-body">
+                <i class="fas fa-seedling fa-3x mb-3"></i>
+                <h3>{{ compost_generated }} tons</h3>
+                <p class="mb-0">Compost Generated</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-info text-white text-center">
+            <div class="card-body">
+                <i class="fas fa-leaf fa-3x mb-3"></i>
+                <h3>{{ total_crops }}</h3>
+                <p class="mb-0">Crops Tracked</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Impact Comparison -->
+<div class="card mb-4">
+    <div class="card-header">
+        <h5 class="mb-0">Your Environmental Impact</h5>
+    </div>
+    <div class="card-body">
+        <h6>Food Saved is Equivalent to:</h6>
+        <ul>
+            <li>Feeding <strong>{{ (food_saved * 4) | int }}</strong> people for a year</li>
+            <li>Saving <strong>{{ (food_saved * 1000) | int }}</strong> liters of water</li>
+            <li>Preserving <strong>{{ (food_saved * 2.5) | round(1) }}</strong> hectares of farmland</li>
+        </ul>
+        
+        <h6 class="mt-4">CO₂ Prevented is Equivalent to:</h6>
+        <ul>
+            <li>Taking <strong>{{ (co2_prevented / 4.6) | round(0) | int }}</strong> cars off the road for a year</li>
+            <li>Planting <strong>{{ (co2_prevented * 45) | round(0) | int }}</strong> trees</li>
+            <li>Powering <strong>{{ (co2_prevented * 120) | round(0) | int }}</strong> homes for a day</li>
+        </ul>
+    </div>
+</div>
+
+<!-- Circular Economy -->
+<div class="card">
+    <div class="card-header bg-success text-white">
+        <h5 class="mb-0"><i class="fas fa-recycle"></i> Circular Economy Impact</h5>
+    </div>
+    <div class="card-body">
+        <p>Through Surplus-to-Sustain, you're contributing to a circular economy where:</p>
+        <ul>
+            <li><strong>Nothing goes to waste:</strong> Every kilogram finds a purpose</li>
+            <li><strong>Waste becomes resource:</strong> Compost returns to your farm</li>
+            <li><strong>Soil improves:</strong> Organic matter enriches your land</li>
+            <li><strong>Community benefits:</strong> Food reaches those in need</li>
+            <li><strong>Climate action:</strong> Real, measurable environmental impact</li>
+        </ul>
+        
+        <div class="alert alert-success mt-3">
+            <i class="fas fa-trophy"></i> <strong>Keep it up!</strong> Your contribution to sustainability is making a real difference.
+        </div>
+    </div>
+</div>
+
+{% endblock %}

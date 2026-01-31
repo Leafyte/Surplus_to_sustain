@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Notifications - Surplus to Sustain{% endblock %}
+
+{% block content %}
+<h2 class="mb-4"><i class="fas fa-bell text-success"></i> Notifications</h2>
+
+{% if notifications %}
+<div class="list-group">
+    {% for notification in notifications %}
+    <div class="list-group-item {% if not notification.is_read %}list-group-item-warning{% endif %}">
+        <div class="d-flex w-100 justify-content-between">
+            <h6 class="mb-1">
+                {% if notification.type == 'success' %}<i class="fas fa-check-circle text-success"></i>
+                {% elif notification.type == 'warning' %}<i class="fas fa-exclamation-triangle text-warning"></i>
+                {% elif notification.type == 'danger' %}<i class="fas fa-exclamation-circle text-danger"></i>
+                {% else %}<i class="fas fa-info-circle text-info"></i>
+                {% endif %}
+                {{ notification.title }}
+            </h6>
+            <small class="text-muted">{{ notification.created_at }}</small>
+        </div>
+        <p class="mb-1">{{ notification.message }}</p>
+        {% if notification.action_url %}
+        <a href="{{ notification.action_url }}" class="btn btn-sm btn-success">Take Action</a>
+        {% endif %}
+        {% if not notification.is_read %}
+        <a href="{{ url_for('mark_notification_read', notification_id=notification.id) }}" class="btn btn-sm btn-outline-secondary">Mark as Read</a>
+        {% endif %}
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="text-center py-5">
+    <i class="fas fa-bell fa-5x text-muted mb-3"></i>
+    <p class="text-muted">No notifications yet.</p>
+</div>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block title %}Transactions - Surplus to Sustain{% endblock %}
+
+{% block content %}
+<h2 class="mb-4"><i class="fas fa-handshake text-success"></i> My Transactions</h2>
+
+{% if transactions %}
+<div class="card">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Date</th>
+                        <th>Crop</th>
+                        <th>Buyer</th>
+                        <th>Quantity</th>
+                        <th>Price/kg</th>
+                        <th>Total Amount</th>
+                        <th>Status</th>
+                        <th>Payment</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for txn in transactions %}
+                    <tr>
+                        <td>#{{ txn.id }}</td>
+                        <td>{{ txn.transaction_date }}</td>
+                        <td>{{ txn.crop_name | title }}</td>
+                        <td>{{ txn.buyer_name }}</td>
+                        <td>{{ txn.quantity_tons }} tons</td>
+                        <td>₹{{ txn.price_per_kg }}/kg</td>
+                        <td><strong>₹{{ txn.total_amount | int }}</strong></td>
+                        <td>
+                            <span class="badge bg-{{ 'success' if txn.status == 'completed' else 'warning' if txn.status == 'pending' else 'info' }}">
+                                {{ txn.status | title }}
+                            </span>
+                        </td>
+                        <td>
+                            <span class="badge bg-{{ 'success' if txn.payment_status == 'paid' else 'warning' }}">
+                                {{ txn.payment_status | title }}
+                            </span>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Transaction Summary -->
+<div class="row mt-4">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body text-center">
+                <h3 class="text-success">{{ transactions | length }}</h3>
+                <p class="text-muted mb-0">Total Transactions</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body text-center">
+                <h3 class="text-success">{{ transactions | selectattr('status', 'equalto', 'completed') | list | length }}</h3>
+                <p class="text-muted mb-0">Completed</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body text-center">
+                <h3 class="text-warning">{{ transactions | selectattr('status', 'equalto', 'pending') | list | length }}</h3>
+                <p class="text-muted mb-0">Pending</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% else %}
+<div class="text-center py-5">
+    <i class="fas fa-handshake fa-5x text-muted mb-3"></i>
+    <p class="text-muted">No transactions yet. Start connecting with buyers!</p>
+    <a href="{{ url_for('buyers_list') }}" class="btn btn-success">Find Buyers</a>
+</div>
+{% endif %}
+
+{% endblock %}

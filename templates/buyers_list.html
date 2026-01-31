@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Buyers - Surplus to Sustain{% endblock %}
+
+{% block content %}
+<h2 class="mb-4"><i class="fas fa-store text-success"></i> Available Buyers</h2>
+
+<div class="row">
+    {% for buyer in buyers %}
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <div class="card-header bg-{{ 'primary' if buyer.buyer_type == 'Processor' else 'info' if buyer.buyer_type == 'Storage' else 'success' if buyer.buyer_type == 'Retailer' else 'warning' if buyer.buyer_type == 'NGO' else 'secondary' }} text-white">
+                <h5 class="mb-0">{{ buyer.name }}</h5>
+            </div>
+            <div class="card-body">
+                <p>
+                    <span class="badge bg-{{ 'primary' if buyer.buyer_type == 'Processor' else 'info' if buyer.buyer_type == 'Storage' else 'success' if buyer.buyer_type == 'Retailer' else 'warning' if buyer.buyer_type == 'NGO' else 'secondary' }}">
+                        {{ buyer.buyer_type }}
+                    </span>
+                </p>
+                <p class="card-text">
+                    <i class="fas fa-map-marker-alt"></i> {{ buyer.address }}<br>
+                    {{ buyer.city }}, {{ buyer.state }} - {{ buyer.pincode }}<br>
+                    <br>
+                    <i class="fas fa-rupee-sign"></i> <strong>Price:</strong> ₹{{ buyer.price_per_kg }}/kg<br>
+                    <i class="fas fa-box"></i> <strong>Capacity:</strong> {{ buyer.capacity_tons }} tons<br>
+                    <i class="fas fa-star"></i> <strong>Rating:</strong> {{ buyer.rating }}/5 ({{ buyer.total_transactions }} transactions)<br>
+                    <br>
+                    <i class="fas fa-leaf"></i> <strong>Specialty:</strong> {{ buyer.specialty_crops }}
+                </p>
+            </div>
+            <div class="card-footer">
+                <a href="tel:{{ buyer.phone }}" class="btn btn-sm btn-success"><i class="fas fa-phone"></i> {{ buyer.phone }}</a>
+                <a href="mailto:{{ buyer.email }}" class="btn btn-sm btn-info"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% if not buyers %}
+<div class="text-center py-5">
+    <i class="fas fa-store fa-5x text-muted mb-3"></i>
+    <p class="text-muted">No buyers found.</p>
+</div>
+{% endif %}
+
+{% endblock %}
