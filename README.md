@@ -86,6 +86,9 @@ An AI-powered platform that predicts crop yields 2-3 weeks before harvest, conne
 
 ### Screenshots
 <img width="1436" height="827" alt="Screenshot 2026-01-31 at 8 38 16 PM" src="https://github.com/user-attachments/assets/b348d023-ac7e-42f5-8519-d1615e9a8ae0" />
+<img width="1436" height="827" alt="Screenshot 2026-01-31 at 8 38 31 PM" src="https://github.com/user-attachments/assets/c3c89d86-2209-4073-adae-b58efa729738" />
+<img width="1436" height="827" alt="Screenshot 2026-01-31 at 8 38 36 PM" src="https://github.com/user-attachments/assets/9a674843-6bc3-42a4-bdd3-ae82fd857266" />
+<img width="1436" height="827" alt="Screenshot 2026-01-31 at 8 38 41 PM" src="https://github.com/user-attachments/assets/a423630c-50b0-4867-85ae-fd0d46d350eb" />
 
 ## 🛠️ Tech Stack
 
