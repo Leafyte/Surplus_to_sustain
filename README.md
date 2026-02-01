@@ -645,21 +645,7 @@ copies of the Software.
 - **Data Sources**: Government agricultural data, NASA POWER API
 - **Libraries**: Flask, scikit-learn, Bootstrap
 - **Community**: Open source contributors
-
----
-
-## 📈 Impact So Far
-
-| Metric | Value |
-|--------|-------|
-| **Farmers Registered** | 1,000+ |
-| **Food Saved** | 5,000 tons |
-| **CO₂ Prevented** | 12,500 tons |
-| **Extra Income Generated** | ₹35,00,000 |
-| **Crops Tracked** | 5,000+ |
-
----
-
+  
 <div align="center">
 
 ### 🌾 Made with ❤️ for Indian Farmers
